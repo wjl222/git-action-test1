@@ -18,10 +18,7 @@ jobs:
                 
                 # 新增：安装 pnpm 到全局（关键步骤）
             - name: 安装 pnpm
-              run: |
-                corepack enable  # 启用 Node 内置的 corepack 管理包管理器
-                corepack prepare pnpm@latest --activate  # 安装最新版 pnpm
-                echo "PATH=$PATH:$(pnpm bin -g)" >> $GITHUB_ENV
+              run: npm install pnpm -g
 
             - name: Install dependencies
               run: pnpm install
