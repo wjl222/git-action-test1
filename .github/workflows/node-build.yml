@@ -14,7 +14,7 @@ jobs:
               with: 
                 registry-url: "https://registry.npmmirror.com"  # 淘宝镜像
                 node-version: "20"
-                cache: "pnpm"  
+                cache: "npm"  
                 
                 # 新增：安装 pnpm 到全局（关键步骤）
             - name: 安装 pnpm
