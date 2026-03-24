@@ -1,0 +1,33 @@
+name: Node.js 自动构建
+
+on: ["push"]
+
+jobs: 
+    build-and-check:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 拉取代码
+              uses: actions/checkout@v4
+            - name: 安装 Node.js 20
+              uses: actions/setup-node@v4
+              with: 
+                registry-url: "https://registry.npmmirror.com"  # 淘宝镜像
+                node-version: "20"
+                cache: "npm"    
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build project
+              run: npm run build
+
+            - name: Deploy to Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                # 无需手动配置，GitHub 自动生成的临时 Token
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                # 前端打包后的目录（Vue/React/Vite 默认为 dist，CRA 为 build）
+                publish_dir: ./dist
+                # 可选：强制覆盖 gh-pages 分支，减少历史体积
+                force_orphan: true
