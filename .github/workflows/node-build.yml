@@ -14,13 +14,19 @@ jobs:
               with: 
                 registry-url: "https://registry.npmmirror.com"  # 淘宝镜像
                 node-version: "20"
-                cache: "npm"    
+                cache: "pnpm"  
+                
+                # 新增：安装 pnpm 到全局（关键步骤）
+            - name: 安装 pnpm
+              run: |
+                corepack enable  # 启用 Node 内置的 corepack 管理包管理器
+                corepack prepare pnpm@latest --activate  # 安装最新版 pnpm
 
             - name: Install dependencies
-              run: npm install
+              run: pnpm install
 
             - name: Build project
-              run: npm run build
+              run: pnpm run build
 
             - name: Deploy to Pages
               uses: peaceiris/actions-gh-pages@v4
