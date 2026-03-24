@@ -14,11 +14,17 @@ jobs:
         steps:
             - name: 拉取代码
               uses: actions/checkout@v4
+
+            # 第一步：仅启用 corepack（不安装全局 pnpm，只为让 setup-node 识别 pnpm）
+            - name: 启用 corepack
+              run: corepack enable
+
             - name: 安装 Node.js 20
               uses: actions/setup-node@v4
               with: 
                 registry-url: "https://registry.npmmirror.com"  # 淘宝镜像
                 node-version: "20"
+                cache: "pnpm"
                 
                 # 新增：安装 pnpm 到全局（关键步骤）
             - name: 安装 pnpm
