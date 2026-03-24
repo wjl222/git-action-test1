@@ -2,6 +2,11 @@ name: Node.js 自动构建
 
 on: ["push"]
 
+permissions:
+  contents: write  # 允许写入/推送仓库内容（包括 gh-pages 分支）
+  pages: write     # 允许操作 GitHub Pages
+  id-token: write  # 辅助 Pages 部署权限
+
 jobs: 
     build-and-check:
         runs-on: ubuntu-latest
