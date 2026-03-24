@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){const c="Webpack 最小测试成功！";console.log(c)}()})();
